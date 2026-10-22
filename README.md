@@ -146,7 +146,7 @@ The application integrates an audible vocal detailing studio powered by the **We
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/biomed-sales-mastery.git
+git clone https://github.com/taliabout/biomed-sales-mastery.git
 cd biomed-sales-mastery
 
 # Install dependencies
