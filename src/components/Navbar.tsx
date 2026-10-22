@@ -39,6 +39,13 @@ import {
 } from 'lucide-react';
 
 export type ActiveView =
+  | 'company_curriculum'
+  | 'compliance_workflow'
+  | 'manager_dashboard'
+  | 'adaptive_roleplay'
+  | 'account_planning'
+  | 'spaced_repetition'
+  | 'platform_cert'
   | 'academies'
   | 'practice_lab'
   | 'analytics'
@@ -132,6 +139,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   const navLinks: { id: ActiveView; label: string; icon: React.ReactNode }[] = [
+    { id: 'company_curriculum', label: 'Company Curriculum (Phase 1)', icon: <Building2 className="h-4 w-4 text-blue-600" /> },
+    { id: 'compliance_workflow', label: 'Compliance & MLR (Phase 2)', icon: <Shield className="h-4 w-4 text-rose-600" /> },
+    { id: 'manager_dashboard', label: 'Manager Dashboard & ROI (Phase 3)', icon: <BarChart2 className="h-4 w-4 text-indigo-600" /> },
+    { id: 'adaptive_roleplay', label: 'Adaptive Voice Roleplay (Phase 4)', icon: <Volume2 className="h-4 w-4 text-purple-600" /> },
+    { id: 'account_planning', label: '7-Methodology Account Lab (Phase 4)', icon: <Layers className="h-4 w-4 text-emerald-600" /> },
+    { id: 'spaced_repetition', label: 'Spaced Repetition (Phase 4)', icon: <BookOpen className="h-4 w-4 text-cyan-600" /> },
+    { id: 'platform_cert', label: 'Platform Certificate (Phase 4)', icon: <Award className="h-4 w-4 text-amber-600" /> },
     { id: 'academies', label: '12 Master Academies', icon: <BookOpen className="h-4 w-4 text-blue-600" /> },
     { id: 'practice_lab', label: 'Commercial Practice Lab (20)', icon: <Layers className="h-4 w-4 text-emerald-600" /> },
     { id: 'analytics', label: 'Performance Analytics (D3)', icon: <BarChart2 className="h-4 w-4 text-indigo-600" /> },

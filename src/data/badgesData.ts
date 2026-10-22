@@ -27,27 +27,27 @@ export interface EliteSalesSkill {
 export const SALES_BADGES: SalesBadge[] = [
   {
     id: 'badge-1',
-    name: 'President’s Club (P-Club) Achievement',
+    name: 'President’s Club Benchmark Badge (Inspired by Top 5% Performance)',
     code: 'P-CLUB',
     category: 'Commercial Excellence',
-    issuer: 'Apex Commercial Council / Industry Standard',
+    issuer: 'Apex Sales Academy (Inspired by Industry Benchmarks)',
     industryWeight: 'P-Club Elite',
-    description: 'The pinnacle award in medical sales, awarded exclusively to the top 5% of commercial representatives who exceed 120%+ of annual quota.',
+    description: 'Platform badge inspired by the top-tier benchmark in medical sales, awarded for mastering quota planning and account displacement simulations.',
     criteria: [
-      'Attain 120%+ of territory quota plan',
-      'Demonstrate net new competitive market share displacement',
-      'Complete 100% compliant documentation with zero Sunshine Act or AKS flags'
+      'Attain 120%+ of simulated territory quota plan (Illustrative benchmark)',
+      'Demonstrate net new competitive market share displacement in practice labs',
+      'Complete fully compliant documentation with zero Sunshine Act or AKS flags'
     ],
     unlockedByDefault: false,
   },
   {
     id: 'badge-2',
-    name: 'Certified Healthcare Commercial Specialist (CHCS)',
+    name: 'Healthcare Commercial Specialist Badge (Inspired by CHCS)',
     code: 'CHCS',
     category: 'Commercial Excellence',
-    issuer: 'Medical Device & Biotech Commercial Institute',
+    issuer: 'Apex Sales Academy (Inspired by Commercial Institute Curricula)',
     industryWeight: 'Gold Standard',
-    description: 'Validates complete fluency across hospital Integrated Delivery Networks (IDNs), GPOs, and cross-functional commercial detailing.',
+    description: 'Platform badge inspired by hospital Integrated Delivery Network (IDN) and GPO cross-functional commercial training programs.',
     criteria: [
       'Complete all 8 core academy modules',
       'Pass the Comprehensive Healthcare Commercial Exam with 80%+',
@@ -57,27 +57,27 @@ export const SALES_BADGES: SalesBadge[] = [
   },
   {
     id: 'badge-3',
-    name: 'AORN Sterile Field & OR Protocol Certified',
+    name: 'OR Sterile Protocol Badge (Inspired by AORN Principles)',
     code: 'AORN-OR',
     category: 'Clinical Governance',
-    issuer: 'Association of periOperative Registered Nurses Aligned',
+    issuer: 'Apex Sales Academy (Inspired by AORN Operating Room Guidelines)',
     industryWeight: 'Required for Tier-1 Reps',
-    description: 'Mandatory standard for standing scrubbed-in or circulating in surgical suites, cath labs, and hybrid operating rooms.',
+    description: 'Platform badge inspired by hospital operating room vendor credentialing standards for circulating and sterile-field awareness.',
     criteria: [
       'Master the 18-inch unscrubbed boundary rule',
       'Aseptic hand scrub and gowning technique verification',
-      'Vendor credentialing compliance (RepTrax, Vendormate, Symplr)'
+      'Vendor credentialing compliance checklist (RepTrax, Vendormate, Symplr simulated)'
     ],
     unlockedByDefault: true,
   },
   {
     id: 'badge-4',
-    name: 'MEDDPICC Master Practitioner (Hospital IDN)',
+    name: 'MEDDPICC Deal Architect Badge (Inspired by MEDDPICC Methodology)',
     code: 'MEDDPICC',
     category: 'Executive Negotiation',
-    issuer: 'Enterprise Sales Methodology Institute',
+    issuer: 'Apex Sales Academy (Inspired by MEDDPICC Deal Qualification)',
     industryWeight: 'Gold Standard',
-    description: 'Institutional qualification framework certifying the ability to identify true Economic Buyers and navigate hospital procurement paper processes.',
+    description: 'Platform badge inspired by the enterprise qualification methodology for identifying Economic Buyers and navigating hospital procurement processes.',
     criteria: [
       'Audit 5 complex hospital deals using 8-point MEDDPICC metrics',
       'Achieve 85%+ score on Decision Process and Economic Buyer alignment',
@@ -87,12 +87,12 @@ export const SALES_BADGES: SalesBadge[] = [
   },
   {
     id: 'badge-5',
-    name: 'Hospital Value Analysis (VAC) Architect',
+    name: 'Hospital Value Analysis Badge (Inspired by VAC Standards)',
     code: 'VAC-PRO',
     category: 'Executive Negotiation',
-    issuer: 'National Association of Healthcare Value Analysis',
+    issuer: 'Apex Sales Academy (Inspired by Hospital VAC Best Practices)',
     industryWeight: 'Gold Standard',
-    description: 'Certifies mastery in drafting 5-pillar VAC submission packets that win committee approval without price erosion.',
+    description: 'Platform badge inspired by hospital Value Analysis Committee submission guidelines and total cost of care modeling.',
     criteria: [
       'Draft a total cost of care financial budget impact model',
       'Align catalog crosswalk to Vizient / Premier GPO tiers',
@@ -102,27 +102,27 @@ export const SALES_BADGES: SalesBadge[] = [
   },
   {
     id: 'badge-6',
-    name: 'PhRMA & AdvaMed Ethics & Compliance Certified',
+    name: 'Healthcare Compliance Badge (Inspired by PhRMA & AdvaMed Codes)',
     code: 'COMPLIANCE',
     category: 'Regulatory & Ethics',
-    issuer: 'Healthcare Compliance Regulatory Board',
+    issuer: 'Apex Sales Academy (Inspired by PhRMA and AdvaMed Ethics Codes)',
     industryWeight: 'Required for Tier-1 Reps',
-    description: 'Strict certification ensuring reps navigate the federal Anti-Kickback Statute, Stark Law, Sunshine Act, and off-label boundaries with zero violations.',
+    description: 'Platform ethics badge covering federal Anti-Kickback Statute, Stark Law, Sunshine Act, and strict promotional boundaries.',
     criteria: [
       'Pass federal Anti-Kickback Statute (42 U.S.C. § 1320a-7b) assessment',
       'Understand strict boundaries between Commercial Detailing and MSL Medical Affairs',
-      'Audit all educational meals under CMS Open Payments regulations'
+      'Audit educational meals under CMS Open Payments Sunshine Act regulations'
     ],
     unlockedByDefault: true,
   },
   {
     id: 'badge-7',
-    name: 'SPIN Clinical In-Service Specialist',
+    name: 'SPIN Clinical In-Service Badge (Inspired by SPIN Methodology)',
     code: 'SPIN-CLINICAL',
     category: 'Commercial Excellence',
-    issuer: 'Rackham Consultative Sales Foundation',
+    issuer: 'Apex Sales Academy (Inspired by Consultative Questioning Frameworks)',
     industryWeight: 'Gold Standard',
-    description: 'Mastery in asking high-context Situation, Problem, Implication, and Need-Payoff questions that lead physicians to self-discover clinical gaps.',
+    description: 'Platform badge inspired by Neil Rackham\'s Situation, Problem, Implication, and Need-Payoff consultative questioning framework.',
     criteria: [
       'Formulate 20 surgical implication questions',
       'Conduct a 3-minute consultative detail without product lecturing',
@@ -132,42 +132,42 @@ export const SALES_BADGES: SalesBadge[] = [
   },
   {
     id: 'badge-8',
-    name: 'Gallup Hunter & Achiever Elite (Stryker / Medtronic Caliber)',
+    name: 'High-Stamina Hunter Badge (Inspired by Behavioral Strengths Profiles)',
     code: 'GALLUP-ELITE',
     category: 'Commercial Excellence',
-    issuer: 'High-Performance Behavioral Assessment Group',
+    issuer: 'Apex Sales Academy (Inspired by Commercial Talent Profiles)',
     industryWeight: 'P-Club Elite',
-    description: 'Meets the statistical outlier profile sought by top medical device recruiters: relentless daily stamina, fierce competitiveness, and courage under surgical fire.',
+    description: 'Platform badge inspired by high-performer behavioral profiles: daily call stamina, resilience, and surgical composure.',
     criteria: [
-      'Score in top decile of Achiever and Competition behavioral traits',
-      'Deliver flawless STAR responses to high-pressure rejection scenarios',
-      'Demonstrate emotional composure during surgical emergencies'
+      'Demonstrate high Achiever and Competition traits in simulations',
+      'Deliver structured STAR responses to high-pressure rejection scenarios',
+      'Demonstrate emotional composure during surgical emergency simulations'
     ],
     unlockedByDefault: false,
   },
   {
     id: 'badge-9',
-    name: 'Shelby Haas 5-Step Objection Reframing Master',
+    name: 'Shelby Haas Objection Reframing Badge (Inspired by She Sells Methodology)',
     code: 'SHELBY-REFRAME',
     category: 'Executive Negotiation',
-    issuer: 'Modern High-Ticket Sales Academy / She Sells Architecture',
+    issuer: 'Apex Sales Academy (Inspired by She Sells Academy Architecture)',
     industryWeight: 'P-Club Elite',
-    description: 'Certifies mastery of radical outcome detachment ("Hot Girl Sales Mentality"), reverse discovery, and transforming knee-jerk resistance into aligned clinical partnerships.',
+    description: 'Platform badge inspired by Shelby Haas\'s radical detachment and 5-step objection reframing framework.',
     criteria: [
       'Execute complete 5-step reframe: Listen, Validate/Mirror, Clarifying Diagnosis, Honest Reframe, Resolution Check',
-      'Eliminate commission breath and maintain neutral executive tonality',
+      'Eliminate high-pressure urgency and maintain neutral consultative tonality',
       'Guide prospect to self-diagnose dissatisfaction with incumbent solution'
     ],
     unlockedByDefault: false,
   },
   {
     id: 'badge-10',
-    name: 'Prior Sales Experience Equivalency (Fast-Track Exemption)',
+    name: 'B2B Sales Experience Badge (Inspired by Commercial Equivalencies)',
     code: 'SALES-EXP-EQ',
     category: 'Commercial Excellence',
-    issuer: 'Commercial Sales Accreditation Council',
+    issuer: 'Apex Sales Academy (Portfolio Recognition)',
     industryWeight: 'Gold Standard',
-    description: 'Official credential recognizing prior quota-carrying B2B sales experience, waiving foundational 101 coursework and fast-tracking directly to advanced hospital closing.',
+    description: 'Platform badge acknowledging prior quota-carrying B2B sales experience and fast-tracking directly to advanced hospital closing modules.',
     criteria: [
       'Verify prior quota achievement in B2B or allied health commercial role',
       'Pass the 60-second diagnostic assessment with 66%+ score',

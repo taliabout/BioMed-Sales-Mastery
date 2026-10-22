@@ -28,6 +28,8 @@ interface CopilotMessage {
   tacticalAction?: string;
   modelUsed?: string;
   groundingUsed?: string;
+  groundingApplied?: boolean;
+  isBackupMode?: boolean;
   timestamp: string;
 }
 
@@ -40,7 +42,7 @@ export const AICopilotChat: React.FC<AICopilotChatProps> = ({ currentTrack }) =>
   const [isMinimized, setIsMinimized] = useState(false);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedModel, setSelectedModel] = useState<'gemini-4-argon' | 'gemini-3.8-flash' | 'gemini-3.1-flash-lite'>('gemini-4-argon');
+  const [selectedModel, setSelectedModel] = useState<'gemini-4-argon' | 'gemini-3.8-flash' | 'gemini-3.1-flash-lite'>('gemini-3.8-flash');
   const [groundingMode, setGroundingMode] = useState<'search' | 'maps' | 'none'>('search');
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
@@ -49,7 +51,7 @@ export const AICopilotChat: React.FC<AICopilotChatProps> = ({ currentTrack }) =>
       {
         role: 'assistant',
         content:
-          'Welcome. I am your Apex Healthcare Commercial Copilot. Powered by Gemini 4 Argon, Gemini 3.8 Flash, and Gemini 3.1 Flash Lite with real-time Google Search and Maps Grounding. Ask any question regarding hospital buying committees, objection reversals, clinical monographs, or reimbursement codes.',
+          'Welcome. I am your Apex Healthcare Commercial Copilot. Ask any question regarding hospital Value Analysis Committees (VAC), objection reframing, clinical monographs, or healthcare compliance regulations.',
         citations: [
           '42 U.S.C. § 1320a-7b (Anti-Kickback Statute)',
           '42 CFR § 403.900 (Physician Payments Sunshine Act)',
@@ -57,8 +59,10 @@ export const AICopilotChat: React.FC<AICopilotChatProps> = ({ currentTrack }) =>
         ],
         framework: 'Regulatory & Commercial Governance Standard',
         tacticalAction: 'Select your preferred Gemini reasoning tier and grounding source above.',
-        modelUsed: 'gemini-4-argon',
-        groundingUsed: 'search',
+        modelUsed: 'gemini-3.8-flash',
+        groundingUsed: 'none',
+        groundingApplied: false,
+        isBackupMode: false,
         timestamp: 'Just now',
       },
     ]);
@@ -110,10 +114,12 @@ export const AICopilotChat: React.FC<AICopilotChatProps> = ({ currentTrack }) =>
           role: 'assistant',
           content: data.reply,
           citations: data.statutoryCitations,
-          framework: 'Multi-Tier Commercial Standard',
-          tacticalAction: 'Verify hospital VAC dates and prepare comparative clinical monograph.',
+          framework: data.framework || 'Multi-Tier Commercial Standard',
+          tacticalAction: data.tacticalAction || 'Verify hospital VAC dates and prepare comparative clinical monograph.',
           modelUsed: data.modelUsed || selectedModel,
-          groundingUsed: data.groundingUsed || groundingMode,
+          groundingUsed: data.groundingApplied ? (data.groundingUsed || 'search') : 'none',
+          groundingApplied: Boolean(data.groundingApplied),
+          isBackupMode: Boolean(data.isBackupMode),
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         },
       ]);
@@ -124,11 +130,14 @@ export const AICopilotChat: React.FC<AICopilotChatProps> = ({ currentTrack }) =>
         {
           role: 'assistant',
           content:
-            'Under hospital prospective payment systems (DRGs), supply acquisition costs are scrutinized by the Value Analysis Committee (VAC). Always prepare a comparative clinical monograph and a cost-of-care financial model demonstrating reduction in complications or length of stay.',
-          citations: ['42 U.S.C. § 1320a-7b (Anti-Kickback Statute)', 'AdvaMed Code of Ethics Section 3'],
-          framework: 'MEDDPICC: Economic Buyer & Decision Criteria',
-          tacticalAction: 'Verify incumbent GPO tier status with materials management.',
-          modelUsed: `${selectedModel} (Deterministic Backup)`,
+            "I can't verify that with current connection. Please verify with your medical or regulatory compliance team.",
+          citations: ['Compliance & Clinical Safety Protocol'],
+          framework: 'Standard Verification Protocol',
+          tacticalAction: 'Verify connection or consult approved reference materials.',
+          modelUsed: 'Offline',
+          groundingUsed: 'none',
+          groundingApplied: false,
+          isBackupMode: true,
           timestamp: 'Just now',
         },
       ]);
@@ -158,7 +167,7 @@ export const AICopilotChat: React.FC<AICopilotChatProps> = ({ currentTrack }) =>
           className="flex items-center gap-2 rounded-full bg-blue-600 px-4 py-3 text-xs font-bold text-white shadow-xl transition hover:bg-blue-700 hover:scale-105"
         >
           <Sparkles className="h-4 w-4" />
-          <span>Ask Fact-Checked Sales AI</span>
+          <span>Ask Sales Copilot</span>
         </button>
       ) : (
         <div
@@ -268,17 +277,24 @@ export const AICopilotChat: React.FC<AICopilotChatProps> = ({ currentTrack }) =>
                       {/* Assistant Details */}
                       {msg.role === 'assistant' && (
                         <div className="mt-2.5 pt-2 border-t border-slate-100 space-y-1.5 text-[10px]">
-                          {msg.modelUsed && (
-                            <div className="flex items-center gap-1 text-slate-400 font-mono">
-                              <Cpu className="h-3 w-3" />
-                              <span>Model: {msg.modelUsed}</span>
-                              {msg.groundingUsed && msg.groundingUsed !== 'none' && (
-                                <span className="text-blue-600 font-semibold uppercase">
-                                  · Grounding: {msg.groundingUsed}
-                                </span>
-                              )}
-                            </div>
-                          )}
+                          <div className="flex flex-wrap items-center gap-1.5 text-slate-500 font-mono">
+                            {msg.modelUsed && (
+                              <span className="flex items-center gap-1">
+                                <Cpu className="h-3 w-3 text-slate-400" />
+                                <span>{msg.modelUsed}</span>
+                              </span>
+                            )}
+                            {msg.isBackupMode && (
+                              <span className="inline-flex items-center gap-1 rounded bg-amber-100 text-amber-800 px-1.5 py-0.5 font-bold text-[10px] border border-amber-300">
+                                Backup mode
+                              </span>
+                            )}
+                            {msg.groundingApplied && msg.groundingUsed && msg.groundingUsed !== 'none' && (
+                              <span className="text-blue-600 font-semibold uppercase flex items-center gap-1">
+                                <Globe className="h-3 w-3" /> Grounding: {msg.groundingUsed}
+                              </span>
+                            )}
+                          </div>
 
                           {msg.citations && msg.citations.length > 0 && (
                             <div className="text-slate-500">

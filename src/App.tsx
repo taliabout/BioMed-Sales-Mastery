@@ -31,6 +31,13 @@ import { CommercialPracticeLab } from './components/CommercialPracticeLab';
 import { BioscienceScout } from './components/BioscienceScout';
 import { MultimodalMediaStudio } from './components/MultimodalMediaStudio';
 import { PerformanceAnalyticsView } from './components/PerformanceAnalyticsView';
+import { CompanyCurriculumWorkspace } from './components/CompanyCurriculumWorkspace';
+import { ComplianceAndMLRWorkflow } from './components/ComplianceAndMLRWorkflow';
+import { EnterpriseManagerDashboard } from './components/EnterpriseManagerDashboard';
+import { AdaptiveVoiceRoleplay } from './components/AdaptiveVoiceRoleplay';
+import { StrategicAccountPlanningLab } from './components/StrategicAccountPlanningLab';
+import { SpacedRepetitionReview } from './components/SpacedRepetitionReview';
+import { PlatformCertificationView } from './components/PlatformCertificationView';
 import {
   TrendingUp,
   Building,
@@ -56,7 +63,7 @@ const DEFAULT_PROFILE: UserProfile = {
   exemptionsGranted: [],
   primarySkillPillar: 'or_clinical_mastery',
   targetTrack: 'med_device',
-  incomeGoal: '$200,000+',
+  incomeGoal: '$200,000+ (Illustrative)',
   targetTimeline: 'steady_60_days',
   currentConfidenceLevel: 50,
   completedLessons: ['les-1-1'],
@@ -236,6 +243,24 @@ export default function App() {
           />
         )}
 
+        {activeView === 'company_curriculum' && (
+          <CompanyCurriculumWorkspace onNavigateToView={(v) => setActiveView(v)} />
+        )}
+
+        {activeView === 'compliance_workflow' && (
+          <ComplianceAndMLRWorkflow onNavigateToView={(v) => setActiveView(v)} />
+        )}
+
+        {activeView === 'manager_dashboard' && <EnterpriseManagerDashboard />}
+
+        {activeView === 'adaptive_roleplay' && <AdaptiveVoiceRoleplay />}
+
+        {activeView === 'account_planning' && <StrategicAccountPlanningLab />}
+
+        {activeView === 'spaced_repetition' && <SpacedRepetitionReview />}
+
+        {activeView === 'platform_cert' && <PlatformCertificationView profile={profile} />}
+
         {activeView === 'enterprise_portal' && <EnterpriseB2BPortal />}
 
         {activeView === 'voice_mockups' && <VoiceMockupsView />}
@@ -289,7 +314,7 @@ export default function App() {
         {activeView === 'submission_helper' && <SubmissionHelper />}
       </main>
 
-      {/* Floating 100% Fact-Checked AI Copilot Chatbot */}
+      {/* Floating AI Sales Copilot Chatbot */}
       <AICopilotChat currentTrack={profile.targetTrack} />
 
       {/* Device Camera Badge Scanner Modal */}

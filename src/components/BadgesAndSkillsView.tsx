@@ -30,11 +30,11 @@ export const BadgesAndSkillsView: React.FC<BadgesAndSkillsViewProps> = ({ certif
               <Award className="h-4 w-4" />
             </span>
             <h2 className="text-base font-bold text-slate-900">
-              Industry Certifications, Badges & Elite Unspoken Sales Skills
+              Commercial Skills Portfolio: Badges Inspired by Industry Credentials
             </h2>
           </div>
           <p className="mt-1 text-xs text-slate-500">
-            Prestigious certifications recognized by medical device, biotech, and pharmaceutical recruiters worldwide, plus high-leverage field tactics.
+            Educational badges inspired by industry credentials and standards, demonstrating competency in hospital procurement, sterile protocol, and consultative selling. (Platform-issued learning portfolio; not an official accredited certification).
           </p>
         </div>
 
