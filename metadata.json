@@ -1,0 +1,6 @@
+{
+  "name": "BioMed Sales Mastery: Healthcare & Biotech Executive Sales Academy",
+  "description": "Comprehensive training academy, frameworks, interactive roleplay simulations, and career accelerator for Biotech, Medical Device, and Pharma sales.",
+  "requestFramePermissions": ["camera", "microphone", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

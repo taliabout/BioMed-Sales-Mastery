@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Healthcare sales professional or candidate profile with learning progress, targets, and certifications",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 200 },
+        "targetTrack": { "type": "string", "maxLength": 60 },
+        "incomeGoal": { "type": "string", "maxLength": 50 },
+        "completedLessons": { "type": "array" },
+        "certifiedModules": { "type": "array" },
+        "updatedAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["uid", "targetTrack"]
+    },
+    "PracticeSubmission": {
+      "title": "PracticeSubmission",
+      "description": "Student deliverable for one of the 20 Commercial Practice Lab exercises",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "exerciseId": { "type": "string", "maxLength": 64 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "content": { "type": "string", "maxLength": 10000 },
+        "score": { "type": "number" },
+        "submittedAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "exerciseId", "userId", "content"]
+    },
+    "MediaAsset": {
+      "title": "MediaAsset",
+      "description": "Generated clinical image, procedural animation video metadata, or audio transcript",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "type": { "type": "string", "enum": ["image", "video", "transcript"] },
+        "title": { "type": "string", "maxLength": 255 },
+        "modelUsed": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "userId", "type", "title"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Stores individual learner profiles, track specialization, and certified modules"
+    },
+    "/users/{userId}/practice_submissions/{submissionId}": {
+      "schema": "PracticeSubmission",
+      "description": "Stores user deliverables and scoring across the 20 commercial practice lab exercises"
+    },
+    "/users/{userId}/media_assets/{assetId}": {
+      "schema": "MediaAsset",
+      "description": "Stores user generated clinical images, videos, and transcription summaries"
+    }
+  }
+}

@@ -1,0 +1,340 @@
+export interface StakeholderNode {
+  id: string;
+  name: string;
+  role: string;
+  category: 'hospital_committee' | 'corporate_sales_ladder' | 'clinical_user';
+  track: 'med_device' | 'biotech_oncology' | 'pharma' | 'healthtech_samd' | 'all';
+  influenceLevel: 'Economic Buyer' | 'Decision Maker' | 'Champion' | 'Gatekeeper' | 'Evaluator / User';
+  typicalTitle: string;
+  avgCompOrBudget: string;
+  topMotivators: string[];
+  biggestFears: string[];
+  receptivityScore: number; // 0 to 100
+  bestChannel: 'LinkedIn InMail' | 'OR Hallway Detailing' | 'Warm Rep Intro' | 'Hospital Phone / Admin' | 'Scientific Conference';
+  linkedinScript: string;
+  phoneOrHallwayScript: string;
+  interviewPrepQuestion: string;
+  howToWinChampionStatus: string;
+  connections: string[]; // IDs of related stakeholders in the map
+}
+
+export interface HealthcareCompanyProfile {
+  id: string;
+  name: string;
+  sector: 'Medical Device & Robotics' | 'Biotechnology & Oncology' | 'Specialty Pharma' | 'HealthTech & SaMD';
+  marketCapOrRevenue: string;
+  cultureProfile: string;
+  salesStructure: {
+    entryLevelRole: string;
+    midLevelRole: string;
+    seniorLevelRole: string;
+    leadershipRole: string;
+  };
+  interviewStyle: string;
+  whatTheyLookFor: string[];
+  topProducts: string[];
+  hiringInsiderTip: string;
+}
+
+export const NETWORKING_STAKEHOLDERS: StakeholderNode[] = [
+  // --- CORPORATE SALES HIERARCHY ---
+  {
+    id: 'corp-asr',
+    name: 'Associate Sales Representative (ASR)',
+    role: 'Frontline Field Execution & Case Coverage',
+    category: 'corporate_sales_ladder',
+    track: 'med_device',
+    influenceLevel: 'Evaluator / User',
+    typicalTitle: 'Associate Sales Rep / Clinical Support Specialist',
+    avgCompOrBudget: '$75k - $110k OTE',
+    topMotivators: ['Carrying trays, covering cases, surviving 60hr weeks, earning trust of the Senior Rep to inherit territory'],
+    biggestFears: ['Dropping sterile implants on OR floor, being late for 6:30 AM scrub, losing surgeon confidence'],
+    receptivityScore: 95,
+    bestChannel: 'LinkedIn InMail',
+    linkedinScript: `Hi [Name] – Noticed you're covering the orthopedic territory at Stryker in [City]. I'm an aspiring med device rep currently studying OR protocol and sterile field credentialing. I admire the grind it takes to cover 3-4 trauma cases daily. Would you be open to a 7-minute call sometime this week? Just wanted to hear what surprised you most about your first 6 months carrying a bag.`,
+    phoneOrHallwayScript: `Hey [Name], quick question – when you were interviewing for your ASR role, what was the one operational skill that separated you from other candidates?`,
+    interviewPrepQuestion: `How do you handle a surgeon screaming at you because a tray is missing a screw during a 7:00 AM joint replacement?`,
+    howToWinChampionStatus: `Ask how you can take busywork off their plate. If they refer you to their Regional Sales Manager, you bypass 90% of HR filters.`,
+    connections: ['corp-tm', 'corp-fcs', 'hosp-scrub'],
+  },
+  {
+    id: 'corp-tm',
+    name: 'Territory Manager / Senior Account Executive',
+    role: 'Quota Carrier & Surgeon Relationship Owner',
+    category: 'corporate_sales_ladder',
+    track: 'all',
+    influenceLevel: 'Decision Maker',
+    typicalTitle: 'Territory Manager / Senior Executive Rep / Key Account Manager',
+    avgCompOrBudget: '$220k - $450k+ OTE ($2.5M - $5M Quota)',
+    topMotivators: ['Hitting 110% to President\'s Club, protecting accounts from competitors, finding a hungry ASR to cover morning OR cases'],
+    biggestFears: ['Surgeon switching to competitor, hospital VAC delaying contract, quota increase next fiscal year'],
+    receptivityScore: 80,
+    bestChannel: 'LinkedIn InMail',
+    linkedinScript: `Hi [Name], saw your team's great work expanding the spine portfolio in [Region]. I've built a full 30-60-90 day territory analysis and MEDDPICC account matrix for the [Region] healthcare system. I know your time is extremely valuable – would you be open to giving me 5 minutes of honest feedback on my business plan?`,
+    phoneOrHallwayScript: `Hi [Name] – I'm doing research on IDN contracting challenges in [State]. How has the recent GPO dual-source contract affected your surgeon detailing cadence?`,
+    interviewPrepQuestion: `Walk me through how you unseated a 10-year incumbent surgeon who was best friends with the competing rep.`,
+    howToWinChampionStatus: `Demonstrate relentless work ethic and zero entitlement. Show them you can protect their accounts and run cases independently.`,
+    connections: ['corp-asr', 'corp-rsd', 'hosp-surgeon', 'hosp-vac'],
+  },
+  {
+    id: 'corp-fcs',
+    name: 'Field Clinical Specialist (FCS)',
+    role: 'Clinical Expert & In-Service Educator',
+    category: 'corporate_sales_ladder',
+    track: 'med_device',
+    influenceLevel: 'Champion',
+    typicalTitle: 'Field Clinical Specialist / Clinical Educator (RN/PA/BME)',
+    avgCompOrBudget: '$110k - $160k Base + Bonus',
+    topMotivators: ['Patient safety, seamless device operation, educating OR staff, non-sales clinical respect'],
+    biggestFears: ['Complications during procedural use, poorly trained surgical techs, rep overselling capabilities'],
+    receptivityScore: 85,
+    bestChannel: 'LinkedIn InMail',
+    linkedinScript: `Hi [Name], your background transitioning from biomedical engineering / clinical nursing into [Company]'s robotics team is inspiring. I'm focusing my study on clinical education and OR workflow efficiency. If you have 5 minutes, I'd love to learn how you bridge complex technical biomechanics with surgeon communication.`,
+    phoneOrHallwayScript: `What is the most common clinical misconception surgeons have when first trialing this platform?`,
+    interviewPrepQuestion: `How do you diplomatically guide a surgeon in the sterile field when they are using an instrument incorrectly without offending their ego?`,
+    howToWinChampionStatus: `Respect their clinical intellect. Never treat them like secondary support; reps who partner closely with their FCS routinely make President's Club.`,
+    connections: ['corp-asr', 'corp-tm', 'hosp-scrub'],
+  },
+  {
+    id: 'corp-rsd',
+    name: 'Regional Sales Director (RSD / Hiring Manager)',
+    role: 'P&L Leader & Territory Hiring Decision Maker',
+    category: 'corporate_sales_ladder',
+    track: 'all',
+    influenceLevel: 'Economic Buyer',
+    typicalTitle: 'Regional Sales Director / Commercial Vice President',
+    avgCompOrBudget: '$350k - $650k+ ($20M - $50M Regional Quota)',
+    topMotivators: ['Regional revenue growth, zero turnover in key territories, hiring self-starters who don\'t need micromanaging'],
+    biggestFears: ['Vacant territory for 3+ months, losing high-volume surgical group to rival, compliance violations'],
+    receptivityScore: 65,
+    bestChannel: 'LinkedIn InMail',
+    linkedinScript: `Hi [Name] – I understand you oversee commercial operations for [Company] in the [Region]. Rather than asking for a standard referral, I put together a customized 30-60-90 day territory plan mapping the 14 ASCs and Level 1 centers in your district, including a VAC submission strategy. If you'd like to review a candidate who prepares like a President's Club rep before day one, I'd welcome 10 minutes on your calendar.`,
+    phoneOrHallwayScript: `Mr./Ms. [Name], what separates the reps in your region who hit 150% of quota from those who plateau at 85%?`,
+    interviewPrepQuestion: `Sell me this pen / tell me about a time you failed miserably and how you bounced back with measurable revenue numbers.`,
+    howToWinChampionStatus: `Show up to the interview with a 30-page physical or digital "Brag Book" and a completed 30-60-90 Day Territory Plan. 99% of applicants don't do this.`,
+    connections: ['corp-tm', 'corp-recruiter', 'hosp-vac'],
+  },
+  {
+    id: 'corp-msl',
+    name: 'Medical Science Liaison (MSL / Biotech)',
+    role: 'Peer-to-Peer Scientific Exchange & KOL Relationships',
+    category: 'corporate_sales_ladder',
+    track: 'biotech_oncology',
+    influenceLevel: 'Champion',
+    typicalTitle: 'Senior MSL / Director of Medical Affairs (PharmD / PhD / MD)',
+    avgCompOrBudget: '$170k - $240k Base + Stock',
+    topMotivators: ['Pure scientific rigor, clinical trial enrollment, publishing Phase III subgroup data, non-promotional education'],
+    biggestFears: ['Commercial reps violating FDA off-label promotion firewalls, unscientific marketing claims'],
+    receptivityScore: 70,
+    bestChannel: 'Scientific Conference',
+    linkedinScript: `Dear Dr. [Name] – I read your recent publication on biomarker-driven immunotherapy response in ASCO. While I'm on the commercial sales development path, I believe elite reps must understand the underlying oncology biology as deeply as their clinical teams. I would be honored to hear your perspective on the most critical clinical trial endpoints oncologists look for today.`,
+    phoneOrHallwayScript: `Dr. [Name], what is the most frequent unsolicited scientific question oncologists ask about biomarker stratification?`,
+    interviewPrepQuestion: `How do you maintain the strict legal firewall between Commercial Detailing and Medical Affairs while still delivering value to key opinion leaders?`,
+    howToWinChampionStatus: `Never ask them for sales leads or off-label marketing materials. Demonstrate profound respect for clinical evidence and the scientific firewall.`,
+    connections: ['hosp-oncologist', 'corp-tm'],
+  },
+  {
+    id: 'corp-recruiter',
+    name: 'Healthcare Executive Recruiter / Talent Acquisition',
+    role: 'Gatekeeper to First-Round Interviews',
+    category: 'corporate_sales_ladder',
+    track: 'all',
+    influenceLevel: 'Gatekeeper',
+    typicalTitle: 'Senior Talent Acquisition Partner / Med Device Headhunter',
+    avgCompOrBudget: '$100k - $180k (Paid per placement: $20k - $40k per hire)',
+    topMotivators: ['Placing candidates who pass the Gallup/Talent+ assessment, fill open requisitions quickly, high retention rate'],
+    biggestFears: ['Candidate bombing the hiring manager interview, candidate backing out of an offer'],
+    receptivityScore: 90,
+    bestChannel: 'LinkedIn InMail',
+    linkedinScript: `Hi [Name], I saw your post regarding the open [Med Device / Biotech] Sales territory in [Region]. I come with certified training in MEDDPICC hospital sales, OR sterile protocol, and a completed 30-60-90 day business plan. I have flexible availability for a screen this week and would love to make this search an easy win for you.`,
+    phoneOrHallwayScript: `What are the top 3 non-negotiable personality traits the Regional Hiring Manager is demanding for this specific territory?`,
+    interviewPrepQuestion: `Walk me through your resume and why you want to transition into healthcare commercial sales.`,
+    howToWinChampionStatus: `Make their job effortless: deliver a clean, quantifiable resume, prompt communication, and high energy.`,
+    connections: ['corp-rsd', 'corp-tm'],
+  },
+
+  // --- HOSPITAL & HEALTH SYSTEM STAKEHOLDERS ---
+  {
+    id: 'hosp-surgeon',
+    name: 'Chief of Surgery / Surgeon Champion',
+    role: 'Clinical Decision Maker & Patient Procedural Authority',
+    category: 'hospital_committee',
+    track: 'med_device',
+    influenceLevel: 'Champion',
+    typicalTitle: 'Chief of Orthopedics / Attending Spine Surgeon / Interventional Cardiologist',
+    avgCompOrBudget: '$600k - $1.2M Clinical Income (Generates $10M+ Hospital Revenue)',
+    topMotivators: ['Superior clinical patient outcomes, ergonomic instrument feel, reducing operative time by 15 mins, zero intra-op complications'],
+    biggestFears: ['Instrument failure in the joint, prolonged hospital stay, hospital administration denying their preferred implant request'],
+    receptivityScore: 50,
+    bestChannel: 'OR Hallway Detailing',
+    linkedinScript: `Dr. [Name] – I read your paper on revision total knee arthroplasty outcomes. We just completed a multi-center study demonstrating a 28% reduction in bone-cement interface micromotion. I know your clinic schedule is grueling; if you have 60 seconds between cases on Thursday, I'd value sharing the 1-page biomechanical summary with you.`,
+    phoneOrHallwayScript: `Dr. [Name], quick 30 seconds before your 9:00 case: on your last 10 revisions, did you encounter any screw strip issues with the incumbent system? We engineered a self-tapping dual-pitch thread specifically to prevent that.`,
+    interviewPrepQuestion: `How do you convince a surgeon who has used the same competitor's implant for 15 years to give your new system a trial on their next case?`,
+    howToWinChampionStatus: `Be an indispensable asset in the OR. Know their glove size, anticipate their next instrument move before they ask, and guarantee 100% sterile tray reliability.`,
+    connections: ['hosp-vac', 'hosp-scrub', 'corp-tm'],
+  },
+  {
+    id: 'hosp-vac',
+    name: 'Value Analysis Committee (VAC) Chair & Hospital CFO',
+    role: 'Financial & Contractual Gatekeeper',
+    category: 'hospital_committee',
+    track: 'all',
+    influenceLevel: 'Economic Buyer',
+    typicalTitle: 'VP of Supply Chain / CFO / VAC Committee Chair (RN/MBA)',
+    avgCompOrBudget: '$50M - $250M Hospital Operating Supply Budget',
+    topMotivators: ['Cost-neutrality or hard ROI, lowering 30-day readmissions (HRRP penalties), standardization across IDN facilities, GPO tier compliance'],
+    biggestFears: ['Physician preference items blowing up the hospital budget, supply chain stockouts, non-reimbursed DRG costs'],
+    receptivityScore: 40,
+    bestChannel: 'Hospital Phone / Admin',
+    linkedinScript: `Dear [Name] – As Supply Chain Director for [Health System], you balance clinician satisfaction with severe DRG margin compression. We developed a bundled health economics dossier for our [Technology] proving a $1,420 net saving per inpatient stay via 0.8 day reduced length-of-stay. Would you be open to receiving our 2-page executive summary ahead of your next VAC meeting?`,
+    phoneOrHallwayScript: `Good morning [Name]. We're preparing a submission dossier for Dr. [Surgeon Name]'s request. Could you confirm your committee's submission deadline and whether you require a 90-day consignment trial or retrospective clinical monograph?`,
+    interviewPrepQuestion: `What do you do when a surgeon wants your implant, but the hospital VAC votes 'NO' because you are not on the primary GPO contract?`,
+    howToWinChampionStatus: `Arm your surgeon champion with a bulletproof financial slide deck before the committee meets. Never let the surgeon walk into VAC without economic numbers.`,
+    connections: ['hosp-surgeon', 'hosp-materials', 'corp-tm'],
+  },
+  {
+    id: 'hosp-materials',
+    name: 'OR Materials Manager & Supply Chain Coordinator',
+    role: 'Logistical Gatekeeper & Inventory Controller',
+    category: 'hospital_committee',
+    track: 'med_device',
+    influenceLevel: 'Gatekeeper',
+    typicalTitle: 'OR Materials Manager / Sterile Processing Department (SPD) Manager',
+    avgCompOrBudget: '$70k - $115k',
+    topMotivators: ['Trays delivered 24 hours prior to surgery for steam autoclaving, zero emergency courier fees, accurate lot numbers, clean billing'],
+    biggestFears: ['Unsterile trays showing up 30 minutes before surgery, vendor reps loitering without badges, billing discrepancies'],
+    receptivityScore: 75,
+    bestChannel: 'Hospital Phone / Admin',
+    linkedinScript: `Hi [Name], I know the logistics behind daily OR case turnover are the hardest part of hospital operations. I'm training on SPD tray check-in and sterile consignment compliance. Thank you for keeping surgical teams safe every day.`,
+    phoneOrHallwayScript: `Good morning [Name], I'm dropping off Dr. [Surgeon]'s sterile trial sets at 2:00 PM today for tomorrow's 7:30 AM case. Is the SPD decontamination dock open on the second floor, and do you need secondary peel-pack backups logged?`,
+    interviewPrepQuestion: `If the sterile processing department calls you at 9:00 PM saying your surgical trays failed biological indicator spore tests for tomorrow's surgery, what do you do?`,
+    howToWinChampionStatus: `Bring clean trays early, help with inventory counts, treat SPD technicians with supreme respect, and always carry extra consignment stock.`,
+    connections: ['hosp-scrub', 'hosp-vac', 'corp-asr'],
+  },
+  {
+    id: 'hosp-scrub',
+    name: 'Lead Surgical Scrub Tech / OR Charge Nurse',
+    role: 'In-Room Procedural Influencer',
+    category: 'clinical_user',
+    track: 'med_device',
+    influenceLevel: 'Evaluator / User',
+    typicalTitle: 'Lead Surgical Technologist (CST) / OR Nurse Circulator (RN)',
+    avgCompOrBudget: '$65k - $95k',
+    topMotivators: ['Intuitive color-coded instrumentation, fast case turnover, clear screw caddies, rep who stays out of the sterile field but guides smoothly'],
+    biggestFears: ['Confusing multi-layer trays, missing trial heads, rep who panics or touches the sterile field'],
+    receptivityScore: 85,
+    bestChannel: 'OR Hallway Detailing',
+    linkedinScript: `Hi [Name], surgical techs are the true unsung backbone of the operating room. I study tray layout ergonomics and rapid instrument handoff. Wishing you smooth turnover and quick cases this week!`,
+    phoneOrHallwayScript: `Hey [Name], I color-coded the driver shafts and placed the trial reamers in sequential order on the bottom rack so your handoffs are frictionless today.`,
+    interviewPrepQuestion: `How do you earn the trust of the OR nursing staff when you are a new rep in the hospital?`,
+    howToWinChampionStatus: `Never be arrogant. Help push carts outside the sterile field, provide in-services on new trays with breakfast, and never make them look bad in front of the surgeon.`,
+    connections: ['hosp-surgeon', 'hosp-materials', 'corp-asr'],
+  },
+  {
+    id: 'hosp-oncologist',
+    name: 'Medical Oncologist / Hematology Clinic Director',
+    role: 'Prescribing Physician & Protocol Director',
+    category: 'hospital_committee',
+    track: 'biotech_oncology',
+    influenceLevel: 'Decision Maker',
+    typicalTitle: 'Director of Clinical Oncology / Comprehensive Cancer Center Director',
+    avgCompOrBudget: '$450k - $750k',
+    topMotivators: ['Overall Survival (OS) hazard ratios, Progression-Free Survival (PFS), manageable adverse effect profile, smooth Buy-and-Bill practice margin'],
+    biggestFears: ['Severe grade 3/4 toxicities, payer prior authorization denials leaving cancer patients without drug, clinic cash flow insolvency'],
+    receptivityScore: 45,
+    bestChannel: 'Warm Rep Intro',
+    linkedinScript: `Dr. [Name] – I read your center's participation in the recent Phase 3 biomarker trial. Our newly published 3-year OS data demonstrated a 34% reduction in risk of progression in PD-L1 negative patients. With your clinic's patient profile, would you be open to an 8-minute clinical briefing next Tuesday?`,
+    phoneOrHallwayScript: `Dr. [Name], for your third-line refractory patients who experienced severe neuropathy on platinum therapy, what is your current maintenance regimen?`,
+    interviewPrepQuestion: `How do you explain a 12% incidence of Grade 3 immune-related adverse events to a cautious oncologist without discouraging them from prescribing?`,
+    howToWinChampionStatus: `Know the clinical study data cold. Bring reimbursement support managers to their billing team so their practice never loses money on Buy-and-Bill.`,
+    connections: ['corp-msl', 'corp-tm'],
+  },
+];
+
+export const TARGET_HEALTHCARE_COMPANIES: HealthcareCompanyProfile[] = [
+  {
+    id: 'co-stryker',
+    name: 'Stryker',
+    sector: 'Medical Device & Robotics',
+    marketCapOrRevenue: '$140B+ Market Cap ($21B+ Rev)',
+    cultureProfile: 'High intensity, fiercely competitive, athletic meritocracy. Famous for "Sell the Pen" and Gallup CliftonStrengths / Talent+ behavioral screening. President\'s Club is legendary.',
+    salesStructure: {
+      entryLevelRole: 'Associate Sales Representative (ASR) - $80k-$110k OTE',
+      midLevelRole: 'Sales Representative / Territory Manager - $180k-$320k OTE',
+      seniorLevelRole: 'Senior Executive Sales Rep / Regional Trainer - $350k-$600k+ OTE',
+      leadershipRole: 'Regional Sales Manager / Director of Commercial Sales',
+    },
+    interviewStyle: 'Gallup/Talent+ 45-minute telephonic behavioral interrogation (measures competition, achiever, courage, kinesthetic persistence), followed by 3-4 rounds with Branch Managers and a final presentation/ride-along.',
+    whatTheyLookFor: ['Former collegiate athletes, top B2B sales reps (Copier/Payroll/Cintas), extreme grit, willingness to be on call 24/7/365, zero excuses.'],
+    topProducts: ['Mako Robotic-Arm Assisted Surgery', 'Triathlon Total Knee System', 'Neptune Surgical Waste Management', '1688 AIM 4K Camera'],
+    hiringInsiderTip: 'Never answer Gallup questions with "it depends." Pick extreme answers: you love winning, you hate losing more than you love winning, and you always set goals higher than anyone else.',
+  },
+  {
+    id: 'co-medtronic',
+    name: 'Medtronic',
+    sector: 'Medical Device & Robotics',
+    marketCapOrRevenue: '$115B+ Market Cap ($32B+ Rev)',
+    cultureProfile: 'Clinical, procedural prestige, mission-driven ("The Medtronic Mission"), consultative value-based healthcare. Deep relationships with hospital C-suites and IDN health systems.',
+    salesStructure: {
+      entryLevelRole: 'Clinical Specialist / Associate Account Rep - $90k-$125k OTE',
+      midLevelRole: 'Senior Territory Manager - $200k-$350k OTE',
+      seniorLevelRole: 'Principal Strategic Account Executive - $350k-$550k OTE',
+      leadershipRole: 'Area Vice President of Sales / Regional Business Director',
+    },
+    interviewStyle: 'STAR behavioral model focusing on clinical acumen, long-term relationship building, IDN contracting mastery, and complex procedural case coverage.',
+    whatTheyLookFor: ['Clinical background or engineering/B2B pedigree, ability to speak the language of cardiovascular and neurosurgeons, strategic enterprise thinkers.'],
+    topProducts: ['Micra Leadless Pacemaker', 'StealthStation Surgical Navigation', 'Hugo Robotic-Assisted Surgery', 'Solitaire Platinum Revascularization'],
+    hiringInsiderTip: 'Memorize the six tenets of the Medtronic Mission written by Earl Bakken in 1960. Weave "alleviating pain, restoring health, and extending life" into your closing interview pitch.',
+  },
+  {
+    id: 'co-genentech',
+    name: 'Genentech (A Member of the Roche Group)',
+    sector: 'Biotechnology & Oncology',
+    marketCapOrRevenue: '$240B+ Roche Group ($65B+ Rev)',
+    cultureProfile: 'Scientific excellence, data-first, patient-centric commercialization. High base salaries, intellectual rigor, complex clinical reimbursement environments (Part B Buy-and-Bill).',
+    salesStructure: {
+      entryLevelRole: 'Therapeutic Account Specialist (TAS) - $150k-$210k OTE',
+      midLevelRole: 'Senior Oncology Account Manager - $220k-$350k OTE',
+      seniorLevelRole: 'Executive Health System Account Director - $350k-$500k OTE',
+      leadershipRole: 'Division Sales Manager / Head of Commercial Strategy',
+    },
+    interviewStyle: 'Clinical paper case study presentation, panel interview with Medical Affairs, Commercial Directors, and Compliance Officers. Heavy focus on randomized clinical trial data analysis.',
+    whatTheyLookFor: ['High scientific aptitude, experience navigating complex oncology clinics, understanding of CMS ASP+6% reimbursement, impeccable compliance records.'],
+    topProducts: ['Tecentriq (Atezolizumab)', 'Avastin', 'Herceptin', 'Hemlibra (Emicizumab)'],
+    hiringInsiderTip: 'Learn how to read Kaplan-Meier survival curves and hazard ratios. Genentech managers will test whether you understand the difference between statistical significance (p-value) and clinical relevance.',
+  },
+  {
+    id: 'co-intuitive',
+    name: 'Intuitive Surgical',
+    sector: 'Medical Device & Robotics',
+    marketCapOrRevenue: '$175B+ Market Cap ($7B+ Rev)',
+    cultureProfile: 'The undisputed pioneer of surgical robotics. Elite, high-flying, technology-driven culture. Sells multi-million-dollar capital systems plus high-margin consumable robotic instruments.',
+    salesStructure: {
+      entryLevelRole: 'Associate Clinical Representative - $95k-$130k OTE',
+      midLevelRole: 'Clinical Sales Representative (CSR) - $220k-$380k OTE',
+      seniorLevelRole: 'Capital Area Sales Manager - $400k-$750k+ OTE',
+      leadershipRole: 'Area Vice President of Robotics',
+    },
+    interviewStyle: 'Rigorous multi-stage interview: business case analysis on hospital capital expenditure ROI, surgeon proctoring strategy, and high-pressure live detailing simulation.',
+    whatTheyLookFor: ['Top-ranked performers from competitive B2B sales or orthopedic device, high energy, ability to sell both clinical value to surgeons and financial EBITDA to hospital CEOs.'],
+    topProducts: ['da Vinci 5 Surgical System', 'da Vinci Xi & SP Systems', 'Ion Endoluminal System for Lung Biopsy'],
+    hiringInsiderTip: 'Understand the "Razor-and-Blade" business model: Intuitive sells the da Vinci robot for $1.5M-$2.5M (capital), but generates $2,000+ in sterile instrument turnover every single procedure.',
+  },
+  {
+    id: 'co-boston-sci',
+    name: 'Boston Scientific',
+    sector: 'Medical Device & Robotics',
+    marketCapOrRevenue: '$110B+ Market Cap ($15B+ Rev)',
+    cultureProfile: 'Collaborative, innovative, high-growth medtech powerhouse with dominant positions in interventional cardiology, endoscopy, neuromodulation, and peripheral interventions.',
+    salesStructure: {
+      entryLevelRole: 'Associate Territory Rep - $85k-$115k OTE',
+      midLevelRole: 'Territory Manager - $190k-$330k OTE',
+      seniorLevelRole: 'Principal Interventional Account Rep - $320k-$500k+ OTE',
+      leadershipRole: 'Regional Sales Director / Global Vice President',
+    },
+    interviewStyle: 'Competency-based interviews focusing on customer relationships, clinical problem-solving in the cath lab/endoscopy suite, and strategic business planning.',
+    whatTheyLookFor: ['Relationship builders who thrive in fast-paced procedural suites (Cath Lab, GI Lab), team players who support clinical in-services.'],
+    topProducts: ['WATCHMAN FLX Left Atrial Appendage Closure Device', 'SpyGlass DS Direct Visualization System', 'WaveWriter Alpha Spinal Cord Stimulator'],
+    hiringInsiderTip: 'Highlight your understanding of the Outpatient Prospective Payment System (OPPS) and how procedures are moving from inpatient hospital settings to Ambulatory Surgery Centers (ASCs).',
+  },
+];

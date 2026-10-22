@@ -1,0 +1,98 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Hardened Global Helpers
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // User Profile Validation
+    function isValidUserProfile(data, userId) {
+      return data.uid == userId &&
+        data.targetTrack is string && data.targetTrack.size() <= 60 &&
+        (!('displayName' in data) || (data.displayName is string && data.displayName.size() <= 100)) &&
+        (!('email' in data) || (data.email is string && data.email.size() <= 200)) &&
+        (!('incomeGoal' in data) || (data.incomeGoal is string && data.incomeGoal.size() <= 50));
+    }
+
+    // Practice Submission Validation
+    function isValidSubmission(data, userId) {
+      return data.userId == userId &&
+        data.exerciseId is string && data.exerciseId.size() <= 64 &&
+        data.content is string && data.content.size() <= 10000;
+    }
+
+    // Media Asset Validation
+    function isValidMediaAsset(data, userId) {
+      return data.userId == userId &&
+        data.type in ['image', 'video', 'transcript'] &&
+        data.title is string && data.title.size() <= 255;
+    }
+
+    // Match rules for /users/{userId}
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false; // Blanket user listing forbidden for PII protection
+
+      allow create: if isOwner(userId) && isValidId(userId) && isValidUserProfile(incoming(), userId);
+
+      allow update: if isOwner(userId) && isValidId(userId) && isValidUserProfile(incoming(), userId) &&
+        incoming().uid == existing().uid; // Immutable identity
+
+      allow delete: if isOwner(userId) && isValidId(userId);
+
+      // Subcollection: Practice Lab Submissions
+      match /practice_submissions/{submissionId} {
+        allow get: if isOwner(userId) && isValidId(submissionId);
+        allow list: if isOwner(userId);
+
+        allow create: if isOwner(userId) && isValidId(submissionId) && isValidSubmission(incoming(), userId);
+
+        allow update: if isOwner(userId) && isValidId(submissionId) && isValidSubmission(incoming(), userId) &&
+          incoming().userId == existing().userId;
+
+        allow delete: if isOwner(userId) && isValidId(submissionId);
+      }
+
+      // Subcollection: Generated Clinical Media Assets
+      match /media_assets/{assetId} {
+        allow get: if isOwner(userId) && isValidId(assetId);
+        allow list: if isOwner(userId);
+
+        allow create: if isOwner(userId) && isValidId(assetId) && isValidMediaAsset(incoming(), userId);
+
+        allow update: if isOwner(userId) && isValidId(assetId) && isValidMediaAsset(incoming(), userId) &&
+          incoming().userId == existing().userId;
+
+        allow delete: if isOwner(userId) && isValidId(assetId);
+      }
+    }
+
+    // Allow connection test
+    match /test/{docId} {
+      allow read: if true;
+    }
+  }
+}
