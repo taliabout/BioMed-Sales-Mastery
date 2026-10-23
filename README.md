@@ -65,8 +65,8 @@ The application implements a **5-tier cascading model fallback system** to reduc
 ```
 
 ### Automated Health Monitoring
-- **Hourly Integrity Verification Loop**: Server executes background surveillance health checks every 60 minutes verifying `/api/health`, `/api/copilot`, `/api/roleplay`, and `/api/analyze-pitch`.
-- **System Audit Telemetry**: Live `/api/system-audit` endpoint providing diagnostic latency logs, cascade status, and health-check results.
+- **Health Endpoint**: `/api/health` reports server status and the configured model cascade. A background routine logs an hourly status entry; it does not yet run live checks against each AI endpoint.
+- **System Audit**: `/api/system-audit` returns the logged status entries and cascade configuration (illustrative; not a full monitoring system).
 
 ---
 
@@ -136,7 +136,7 @@ The application integrates an audible vocal detailing studio powered by the **We
    - Capture badge scans, sample lot barcodes, or profile photos for your Medical Sales Brag Book.
 3. **GPS Location (HTML5 Geolocation API)**:
    - Territory Healthcare Facility Radar.
-   - Automatically detects current GPS coordinates and calculates driving radius to nearby Level 1 Trauma Centers, Academic Medical Centers, and ASCs.
+   - Reads the device's GPS coordinates (with permission) to personalize a territory view of sample healthcare facilities. Facility lists and distances are illustrative estimates, not live map data.
 4. **Calendar & Notification Integrations**:
    - 1-click **Add to Google Calendar** and downloadable `.ics` calendar files for surgical trials, VAC committee hearings, and doctor detailing breakfasts.
    - Browser push notifications for case prep reminders and compliance alerts.
