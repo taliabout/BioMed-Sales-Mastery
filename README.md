@@ -2,11 +2,13 @@
 
 An executive-level commercial training academy, interactive simulation environment, and career accelerator designed to prepare individuals for high-performance sales in **Medical Devices**, **Biotechnology & Specialty Oncology**, **Specialty Pharmaceuticals**, and **HealthTech & SaMD (Software as a Medical Device)**.
 
-Designed to mirror **5+ years of President's Club field experience**, this platform codifies enterprise sales methodologies (MEDDPICC, SPIN Selling, The Challenger Sale, Command of the Message) and adapts them directly to hospital operating rooms, hospital Value Analysis Committees (VAC), and health system C-Suites.
+This platform is built around enterprise sales methodologies (MEDDPICC, SPIN Selling, The Challenger Sale, Command of the Message) and adapts them directly to hospital operating rooms, hospital Value Analysis Committees (VAC), and health system C-Suites.
 
 ---
 
-## 📊 Raw Industry Figures & Commercial Benchmarks
+## 📊 Illustrative Industry Figures & Commercial Benchmarks (Unverified)
+
+> **Note:** The figures below are illustrative, AI-generated estimates used for training scenarios. They have not been independently verified and should not be used for compensation, career, or compliance decisions.
 
 ### 1. Healthcare Sales Compensation Bands (U.S. National Averages)
 
@@ -35,9 +37,9 @@ Designed to mirror **5+ years of President's Club field experience**, this platf
 
 ---
 
-## 🛠️ Multi-Tier Resilient AI Model Architecture (Zero-Downtime Guarantee)
+## 🛠️ Multi-Tier Resilient AI Model Architecture (Fallback Design)
 
-The application implements a **4-tier cascading model fallback system** to prevent any interruption during high demand, network latency, or quota exhaustion:
+The application implements a **5-tier cascading model fallback system** to reduce interruptions during high demand, network latency, or quota exhaustion:
 
 ```
 [User Input]
@@ -62,9 +64,9 @@ The application implements a **4-tier cascading model fallback system** to preve
   └── President's Club VP Coaching & Re-frame Scripts
 ```
 
-### Continuous Automated Runtime Surveillance & Zero-Downtime Guarantee
+### Automated Health Monitoring
 - **Hourly Integrity Verification Loop**: Server executes background surveillance health checks every 60 minutes verifying `/api/health`, `/api/copilot`, `/api/roleplay`, and `/api/analyze-pitch`.
-- **System Audit Telemetry**: Live `/api/system-audit` endpoint providing diagnostic latency logs, cascade status, and zero-error verification.
+- **System Audit Telemetry**: Live `/api/system-audit` endpoint providing diagnostic latency logs, cascade status, and health-check results.
 
 ---
 
@@ -73,7 +75,7 @@ The application implements a **4-tier cascading model fallback system** to preve
 Designed for Biotechnology, Medical Device, and HealthTech corporations seeking to deploy proprietary sales onboarding before day 1:
 - **Custom Framework Implantation**: Enter company drug/device monograph, clinical trial endpoints (Phase III PFS, ORR, HR metrics), target HCP buying committees, and pre-approved objection rebuttals.
 - **Universal HTML & React SDK**: One-click embed code snippets allowing biotech organizations to implant this interactive simulation engine into their internal LMS (Docebo, Cornerstone) or company intranet.
-- **B2B Revenue & ROI Model**: Built-in commercial licensing calculator proving $15,000–$120,000/yr corporate licensing value, reducing rep ramp time from 6 months down to 6 weeks.
+- **B2B Revenue & ROI Model**: Built-in commercial licensing calculator that estimates illustrative corporate licensing value (unverified assumptions).
 
 ---
 
@@ -112,7 +114,7 @@ Tailors training based on individual background, verified skills, and prior expe
 
 ## 🎙️ Voice Audio Mockups Studio (Vocal Inflection & Detailing Practice)
 The application integrates an audible vocal detailing studio powered by the **Web Speech Synthesis API** and **Web Speech Recognition API**:
-- **Master vs Amateur Audio Breakdowns**: Listen to real audible recordings of hallway details, 5-step objection reframes, and hospital CFO meetings.
+- **Master vs Amateur Audio Breakdowns**: Listen to synthesized audio demonstrations of hallway details, 5-step objection reframes, and hospital CFO meetings.
 - **Vocal Tone & Inflection Calibration**: Master the authoritative **down-tone** (dropping pitch at the end of sentences) vs insecure up-tones.
 - **Pacing Control**: Optimal 120–130 WPM speech cadence with calculated 2-second micro-pauses.
 - **Live Practice Recorder**: Speak your pitch directly into your phone or laptop microphone to receive real-time word-count, cadence, and collaborative language scoring.
@@ -146,8 +148,8 @@ The application integrates an audible vocal detailing studio powered by the **We
 
 ```bash
 # Clone the repository
-git clone https://github.com/taliabout/biomed-sales-mastery.git
-cd biomed-sales-mastery
+git clone https://github.com/taliabout/BioMed-Sales-Mastery.git
+cd BioMed-Sales-Mastery
 
 # Install dependencies
 npm install
